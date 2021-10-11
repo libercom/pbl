@@ -13,8 +13,8 @@ python manage.py runserver
 ## Backend development workflow - Mac/Linux
 
 ```json
-virtualenv env
-source env/bin/activate
+virtualenv venv
+source venv/bin/activate
 pip install -r requirements.txt
 python manage.py runserver
 ```
@@ -23,6 +23,5 @@ python manage.py runserver
 
 ```json
 npm i
-npm start
 npm run dev
 ```
