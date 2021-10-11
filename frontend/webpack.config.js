@@ -12,15 +12,14 @@ module.exports = {
             }
         ],
     },
-    plugins: [
-        new BrowserSyncPlugin({
-            notify: false,
-            files: [
-                './templates/frontend/*.html',
-                './src/*.jsx'
-            ],
-            // server: { baseDir: ['src'] },
-            proxy: '127.0.0.1:8000'
-        })
-    ]
+    // plugins: [
+    //     new BrowserSyncPlugin({
+    //         notify: false,
+    //         files: [
+    //             './templates/frontend/*.html',
+    //             './src/*.jsx'
+    //         ],
+    //         proxy: '127.0.0.1:8000'
+    //     })
+    // ]
 };
