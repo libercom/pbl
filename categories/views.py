@@ -25,3 +25,11 @@ def laptopDetails(request, name):
     serializer = LaptopSerializer(laptops, many=False)
 
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def laptopSearch(request, name):
+    laptops = Laptop.objects.filter(name__contains=str(name).replace('+', ' '))
+    serializer = LaptopSerializer(laptops, many=True)
+
+    return Response(serializer.data)
