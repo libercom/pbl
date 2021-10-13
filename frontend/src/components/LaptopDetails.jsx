@@ -6,7 +6,7 @@ const LaptopDetails = ({ laptop }) => {
             <img className="card-img-top" src={laptop.img} alt="Card image cap" />
             <div className="card-body">
                 <h5 className="card-title">{laptop.name}</h5>
-                <p className="card-text">{laptop.starting_price} lei</p>
+                <p className="card-text">De la <b>{laptop.starting_price}</b> lei</p>
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">{laptop.manufacturer}</li>

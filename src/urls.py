@@ -7,5 +7,5 @@ urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
     path('', include('frontend.urls')),
     path('api/', include('categories.urls')),
     path('admin/', admin.site.urls),
-    re_path(r'^(?:.*)/?', include('frontend.urls')),
+    re_path(r'(^(?!(api|admin)).*$)', include('frontend.urls')),
 ]
