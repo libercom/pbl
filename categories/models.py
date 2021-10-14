@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import connection, models
 
 
 class Laptop(models.Model):
@@ -29,6 +29,36 @@ class Laptop(models.Model):
     img = models.ImageField(upload_to='uploads/', default='default.jpg')
     category = models.CharField(max_length=50)
     starting_price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+
+class Mouse(models.Model):
+    name = models.CharField(max_length=50)
+    category = models.CharField(max_length=50)
+    starting_price = models.IntegerField()
+    manufacturer = models.CharField(max_length=50)
+    connection_type = models.CharField(max_length=50)
+    sensor_type = models.CharField(max_length=50)
+    max_resolution = models.IntegerField()
+    buttons_number = models.IntegerField()
+    img = models.ImageField(upload_to='uploads/', default='default.jpg')
+
+    def __str__(self):
+        return self.name
+
+
+class Monitor(models.Model):
+    name = models.CharField(max_length=50)
+    category = models.CharField(max_length=50)
+    starting_price = models.IntegerField()
+    manufacturer = models.CharField(max_length=50)
+    display_type = models.CharField(max_length=50)
+    resolution = models.CharField(max_length=50)
+    response_time = models.IntegerField()
+    curved_screen = models.CharField(max_length=3)
+    img = models.ImageField(upload_to='uploads/', default='default.jpg')
 
     def __str__(self):
         return self.name

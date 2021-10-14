@@ -11,9 +11,11 @@ const SearchBar = ({ search, setSearch }) => {
     }
 
     const submitHandler = event => {
-        history.push(`/search?=${search}`)
+        if (search !== '') {
+            history.push(`/search?=${search}`)
+            setSearch('')
+        }
         // history.goBack()
-        setSearch('')
         event.preventDefault()
     }
 

@@ -9,10 +9,10 @@ const SearchSuggestions = ({ search, setSearch }) => {
     useEffect(() => {
         let isSubscribed = true;
         if (search.length > 0) {
-            axios.get(`api/laptops/search/${search.replaceAll(' ', '+')}`)
+            axios.get(`api/devices/search/${search.replaceAll(' ', '+')}`)
                 .then(result => {
                     if (isSubscribed) {
-                        setSuggestions(result.data)
+                        setSuggestions(result.data.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)))
                     }
                 })
                 .catch(error => console.log(error))
@@ -26,9 +26,9 @@ const SearchSuggestions = ({ search, setSearch }) => {
     return (
         <div className="container d-flex flex-column">
             {suggestions.length > 0 ?
-                suggestions.map(el => {
+                suggestions.map((el, i) => {
                     return (
-                        <div key={el.id} className="card d-flex" style={{ width: '500px', margin: "auto auto" }}>
+                        <div key={i} className="card d-flex" style={{ width: '500px', margin: "auto auto" }}>
                             <img className="card-img-top" style={{ width: '180px', height: '180px' }} src={el.img} alt="Card image cap" />
                             <div className="card-body">
                                 <h5 className="card-title">{el.name}</h5>

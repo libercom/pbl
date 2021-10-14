@@ -5,21 +5,23 @@ import Sponsors from "./components/Sponsors.jsx";
 import SearchBar from "./components/SearchBar.jsx";
 import LaptopDetails from "./components/LaptopDetails.jsx";
 import SearchSuggestions from "./components/SearchSuggestions.jsx";
+import MouseDetails from "./components/MouseDetails.jsx";
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
+import MonitorDetails from "./components/MonitorDetails.jsx";
 
 const App = () => {
 
-    const [laptops, setLaptops] = useState([])
+    const [devices, setDevices] = useState([])
     const [search, setSearch] = useState('')
 
     useEffect(() => {
-        axios.get('/api/laptops')
+        axios.get('/api/devices')
             .then(result => {
-                setLaptops(result.data)
+                setDevices(result.data)
             })
             .catch(error => {
                 console.log(error)
@@ -34,15 +36,19 @@ const App = () => {
                     <Route path='/search'>
                         <SearchSuggestions search={search} setSearch={setSearch} />
                     </Route>
-                    {laptops.map(el => {
+                    {devices.map((el, i) => {
                         return (
-                            <Route key={el.id} path={'/' + el.name.replaceAll(' ', '+')}>
-                                <LaptopDetails laptop={el} />
+                            <Route key={i} path={'/' + el.name.replaceAll(' ', '+')}>
+                                {(el.category === 'Laptops') ?
+                                    <LaptopDetails laptop={el} />
+                                    : (el.category === 'Mouses') ?
+                                        <MouseDetails mouse={el} /> :
+                                        <MonitorDetails monitor={el} />}
                             </Route>
                         )
                     })}
                     <Route path='/'>
-                        <PopularProducts laptops={laptops.slice(0, 5)} />
+                        <PopularProducts devices={devices.slice(0, 5)} />
                         <Sponsors />
                     </Route>
                 </Switch>
