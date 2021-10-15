@@ -1,40 +1,34 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import PopularProducts from "./components/PopularProducts.jsx";
-import Sponsors from "./components/Sponsors.jsx";
-import SearchBar from "./components/SearchBar.jsx";
-import LaptopDetails from "./components/LaptopDetails.jsx";
-import SearchSuggestions from "./components/SearchSuggestions.jsx";
-import MouseDetails from "./components/MouseDetails.jsx";
+import React, { useEffect } from "react";
+import { useDispatch, connect } from 'react-redux';
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
+import SearchBar from "./components/SearchBar.jsx";
+import MouseDetails from "./components/MouseDetails.jsx";
+import LaptopDetails from "./components/LaptopDetails.jsx";
 import MonitorDetails from "./components/MonitorDetails.jsx";
+import PopularProducts from "./components/PopularProducts.jsx";
+import SearchSuggestions from './components/SearchSuggestions.jsx'
+import Sponsors from "./components/Sponsors.jsx";
+import { loadDevices } from './redux/actions/actions.js';
 
-const App = () => {
+const App = ({ devices }) => {
 
-    const [devices, setDevices] = useState([])
-    const [search, setSearch] = useState('')
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        axios.get('/api/devices')
-            .then(result => {
-                setDevices(result.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        dispatch(loadDevices())
     }, [])
 
     return (
         <Router>
             <div className="container d-flex flex-column bg-light">
-                <SearchBar search={search} setSearch={setSearch} />
+                <SearchBar />
                 <Switch>
                     <Route path='/search'>
-                        <SearchSuggestions search={search} setSearch={setSearch} />
+                        <SearchSuggestions />
                     </Route>
                     {devices.map((el, i) => {
                         return (
@@ -48,7 +42,7 @@ const App = () => {
                         )
                     })}
                     <Route path='/'>
-                        <PopularProducts devices={devices.slice(0, 5)} />
+                        <PopularProducts />
                         <Sponsors />
                     </Route>
                 </Switch>
@@ -57,4 +51,10 @@ const App = () => {
     )
 }
 
-export default App
+const mapStateToProps = state => {
+    return {
+        devices: state.devices.devices,
+    }
+}
+
+export default connect(mapStateToProps, null)(App)

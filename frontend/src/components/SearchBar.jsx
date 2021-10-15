@@ -1,19 +1,21 @@
 import React from "react";
+import { useDispatch, connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import { changeSearch } from "../redux/actions/actions";
 
-const SearchBar = ({ search, setSearch }) => {
-
+const SearchBar = ({ search }) => {
+    const dispatch = useDispatch()
     const history = useHistory()
 
     const inputChangeHandler = event => {
-        setSearch(event.target.value)
+        dispatch(changeSearch(event.target.value))
     }
 
     const submitHandler = event => {
         if (search !== '') {
             history.push(`/search?=${search}`)
-            setSearch('')
+            dispatch(changeSearch(''))
         }
         // history.goBack()
         event.preventDefault()
@@ -21,7 +23,7 @@ const SearchBar = ({ search, setSearch }) => {
 
     return (
         <nav className="navbar navbar-light justify-content-center">
-            <Link to="/" className="navbar-brand" onClick={() => setSearch('')}>Ecatalog</Link>
+            <Link to="/" className="navbar-brand" onClick={() => dispatch(changeSearch(''))}>Ecatalog</Link>
             <form
                 className="form-inline d-flex"
                 style={{ width: '70%', marginLeft: '70px' }}
@@ -43,4 +45,10 @@ const SearchBar = ({ search, setSearch }) => {
     )
 }
 
-export default SearchBar
+const mapStateToProps = state => {
+    return {
+        search: state.search.search
+    }
+}
+
+export default connect(mapStateToProps, null)(SearchBar)

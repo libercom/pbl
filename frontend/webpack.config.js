@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
-    entry: path.join(__dirname, "src", "index.jsx"),
+    entry: ["regenerator-runtime/runtime.js", path.join(__dirname, "src", "index.js")],
     module: {
         rules: [
             {
