@@ -28,7 +28,11 @@ class Laptop(models.Model):
         max_length=50, choices=OPERATING_SYSTEMS)
     img = models.ImageField(upload_to='uploads/', default='default.jpg')
     category = models.CharField(max_length=50)
-    starting_price = models.IntegerField(default=0)
+    starting_price = models.IntegerField()
+    darwin_price = models.IntegerField(default=0)
+    darwin_link = models.CharField(max_length=150, default='none')
+    enter_price = models.IntegerField(default=0)
+    enter_link = models.CharField(max_length=150, default='none')
 
     def __str__(self):
         return self.name
@@ -44,6 +48,10 @@ class Mouse(models.Model):
     max_resolution = models.IntegerField()
     buttons_number = models.IntegerField()
     img = models.ImageField(upload_to='uploads/', default='default.jpg')
+    darwin_price = models.IntegerField(default=0)
+    darwin_link = models.CharField(max_length=150, default='none')
+    enter_price = models.IntegerField(default=0)
+    enter_link = models.CharField(max_length=150, default='none')
 
     def __str__(self):
         return self.name
@@ -59,6 +67,10 @@ class Monitor(models.Model):
     response_time = models.IntegerField()
     curved_screen = models.CharField(max_length=3)
     img = models.ImageField(upload_to='uploads/', default='default.jpg')
+    darwin_price = models.IntegerField(default=0)
+    darwin_link = models.CharField(max_length=150, default='none')
+    enter_price = models.IntegerField(default=0)
+    enter_link = models.CharField(max_length=150, default='none')
 
     def __str__(self):
         return self.name

@@ -22,6 +22,10 @@ class LaptopSerializer(serializers.ModelSerializer):
             'operating_system',
             'manufacturer',
             'img',
+            'darwin_price',
+            'darwin_link',
+            'enter_price',
+            'enter_link',
         ]
 
 
@@ -38,6 +42,10 @@ class MouseSerializer(serializers.ModelSerializer):
             'max_resolution',
             'buttons_number',
             'img',
+            'darwin_price',
+            'darwin_link',
+            'enter_price',
+            'enter_link',
         ]
 
 
@@ -54,4 +62,8 @@ class MonitorSerializer(serializers.ModelSerializer):
             'response_time',
             'curved_screen',
             'img',
+            'darwin_price',
+            'darwin_link',
+            'enter_price',
+            'enter_link',
         ]
