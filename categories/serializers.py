@@ -1,6 +1,5 @@
-from django.db.models import fields
 from rest_framework import serializers
-from categories.models import Laptop, Mouse, Monitor
+from categories.models import Laptop, Mouse, Monitor, Product, LaptopCategory, MonitorCategory, MouseCategory, DarwinProducts, EnterProducts
 
 
 class LaptopSerializer(serializers.ModelSerializer):
@@ -67,3 +66,33 @@ class MonitorSerializer(serializers.ModelSerializer):
             'enter_price',
             'enter_link',
         ]
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
+class LaptopCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LaptopCategory
+        exclude = ['id', 'product_id']
+
+
+class MouseCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MouseCategory
+        exclude = ['id', 'product_id']
+
+
+class MonitorCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MonitorCategory
+        exclude = ['id', 'product_id']
+
+
+class DarwinProductsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DarwinProducts
+        exclude = ['id', 'product_id']
