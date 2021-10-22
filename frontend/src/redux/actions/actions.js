@@ -1,37 +1,65 @@
 import 'regenerator-runtime/runtime'
 import {
     LOAD_DEVICES,
-    SEARCH_DEVICES,
+    GET_SUGGESTIONS,
+    LOAD_SUGGESTIONS,
     SEARCH_CHANGE,
-    CLEAR_SUGGESTIONS
+    CLEAR_SUGGESTIONS,
+    GET_DETAILS,
+    LOAD_DETAILS,
+    CLEAR_DETAILS,
 } from "./types"
-import axios from "axios"
 
-export function loadDevices() {
-    return async dispatch => {
-        const result = await axios.get('/api/devices')
-        const json = result.data
-        dispatch({ type: LOAD_DEVICES, payload: json })
+export const loadDevices = (devices) => {
+    return {
+        type: LOAD_DEVICES,
+        payload: devices
     }
 }
 
-export function searchDevices(search) {
-    return async dispatch => {
-        const result = await axios.get(`/api/devices/search/${search}`)
-        const json = result.data
-        dispatch({ type: SEARCH_DEVICES, payload: json })
+export const getSuggestions = (search) => {
+    return {
+        type: GET_SUGGESTIONS,
+        payload: search
     }
 }
 
-export function changeSearch(search) {
+export const loadSuggestions = (suggestions) => {
+    return {
+        type: LOAD_SUGGESTIONS,
+        payload: suggestions
+    }
+}
+
+export const getDetails = (device) => {
+    return {
+        type: GET_DETAILS,
+        payload: device
+    }
+}
+
+export const loadDetails = (details) => {
+    return {
+        type: LOAD_DETAILS,
+        payload: details
+    }
+}
+
+export const changeSearch = (search) => {
     return {
         type: SEARCH_CHANGE,
         payload: search
     }
 }
 
-export function clearSuggestions() {
+export const clearSuggestions = () => {
     return {
         type: CLEAR_SUGGESTIONS
+    }
+}
+
+export const clearDetails = () => {
+    return {
+        type: CLEAR_DETAILS
     }
 }

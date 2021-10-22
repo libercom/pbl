@@ -1,7 +1,7 @@
 import {
     SEARCH_CHANGE,
-    SEARCH_DEVICES,
-    CLEAR_SUGGESTIONS
+    CLEAR_SUGGESTIONS,
+    LOAD_SUGGESTIONS
 } from "../actions/types"
 
 const initialState = {
@@ -11,10 +11,10 @@ const initialState = {
 
 export const searchReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SEARCH_DEVICES:
-            return { ...state, suggestions: action.payload }
         case SEARCH_CHANGE:
             return { ...state, search: action.payload }
+        case LOAD_SUGGESTIONS:
+            return { ...state, suggestions: action.payload }
         case CLEAR_SUGGESTIONS:
             return { ...state, suggestions: [] }
         default:

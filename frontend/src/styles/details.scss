@@ -1,112 +1,7 @@
-$base-color: rgb(73, 73, 73);
-$secondary-color: rgba(214, 214, 214, 0.5);
-$scrollbar-color: rgba(212, 212, 212, 0.7);
-
-* {
-    text-decoration: none;
-    color: #111;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 .container {
     width: 80%;
     height: 500px;
     margin: auto;
-
-    .header {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-
-        .logo {
-            margin-left: 60px;
-            font-size: 20px;
-            text-decoration: none;
-            color: #111;
-            align-self: center;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        form {
-            flex-grow: 2;
-            display: flex;
-            margin-left: 145px;
-
-            .input {
-                display: flex;
-                width: 60%;
-                border: 2px solid $base-color;
-                border-radius: 30px;
-                padding: 5px 15px;
-                
-                input {
-                    flex-grow: 2;
-                    height: 30px;
-                    border: none;
-                    font-size: 14px;
-
-                    &:focus {
-                        outline: none;
-                    }
-
-                    &:not(:placeholder-shown) {
-                        & + button {
-                            display: block;
-                        }
-                    }
-                }
-
-                button {
-                    border: 0;
-                    height: 20px;
-                    display: none;
-                    background-color: transparent;
-                    align-self: center;
-                    
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    
-                    span {
-                        margin: 0;
-                        font-size: 20px;
-                        color: black;
-                    }
-                }
-            }
-
-            span {
-                margin-left: 15px;
-                color: rgb(53, 107, 255);
-                align-self: center;
-            }
-
-            .btn-search {
-                display: flex;
-                border: 0ch;
-                font-size: 15px;
-                background-color: transparent;
-            
-                div {
-                    border: none;
-                    margin-left: 5px;
-                    color: rgb(53, 107, 255);
-                    font-weight: bold;
-                    align-self: center;
-                }
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-                    
-        }
-    }
 
     .section {
         display: flex;
@@ -117,7 +12,6 @@ $scrollbar-color: rgba(212, 212, 212, 0.7);
             width: 30%;
             display: flex;
             flex-direction: column;
-            // margin-bottom: 50px;
             margin-top: auto;
             
             .secondary-images {
@@ -170,7 +64,7 @@ $scrollbar-color: rgba(212, 212, 212, 0.7);
                 }
 
                 span {
-                    color: $secondary-color;
+                    color: $table-color;
                     margin-left: -4px;
                     margin-right: 4px;
                 }
@@ -198,7 +92,7 @@ $scrollbar-color: rgba(212, 212, 212, 0.7);
                     tr {
                                             
                         &:nth-child(odd) {
-                            background-color: $secondary-color;
+                            background-color: $table-color;
                         }
                     }
 

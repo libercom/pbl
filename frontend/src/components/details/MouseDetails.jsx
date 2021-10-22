@@ -2,65 +2,67 @@ import React from "react";
 
 const MouseDetails = ({ mouse }) => {
     return (
-        <div class="section">
-            <div class="device-photos">
-                <div class="main-image">
+        <div className="section">
+            <div className="device-photos">
+                <div className="main-image">
                     <img src={mouse.img} alt="" />
                 </div>
                 <p><b>Galerie</b> {mouse.name}</p>
-                <div class="secondary-images">
-                    <img class="current-img" src={mouse.img} alt="" />
+                <div className="secondary-images">
+                    <img className="current-img" src={mouse.img} alt="" />
                     <img src={mouse.img} alt="" />
                     <img src={mouse.img} alt="" />
                 </div>
             </div>
-            <div class="device-info">
-                <div class="device-general-info">
+            <div className="device-info">
+                <div className="device-general-info">
                     <h1>{mouse.name}</h1>
-                    <span class="material-icons checked">
+                    <span className="material-icons checked">
                         circle
                     </span>
-                    <span class="material-icons checked">
+                    <span className="material-icons checked">
                         circle
                     </span>
-                    <span class="material-icons checked">
+                    <span className="material-icons checked">
                         circle
                     </span>
-                    <span class="material-icons checked">
+                    <span className="material-icons checked">
                         circle
                     </span>
-                    <span class="material-icons">
+                    <span className="material-icons">
                         circle
                     </span>
                     <p>De la <b>{mouse.starting_price}</b> lei</p>
                 </div>
-                <div class="device-specifications">
+                <div className="device-specifications">
                     <h3>Caracteristici, descrierea produsului</h3>
                     <table>
-                        <tr>
-                            <td class="specification-name">Producător</td>
-                            <td class="specification-value">{mouse.manufacturer}</td>
-                        </tr>
-                        <tr>
-                            <td class="specification-name">Tip conexiune</td>
-                            <td class="specification-value">{mouse.connection_type}</td>
-                        </tr>
-                        <tr>
-                            <td class="specification-name">Rezoluție maxinmă</td>
-                            <td class="specification-value">{mouse.max_resolution}</td>
-                        </tr>
-                        <tr>
-                            <td class="specification-name">Tip senzor</td>
-                            <td class="specification-value">{mouse.sensor_type}</td>
-                        </tr>
-                        <tr>
-                            <td class="specification-name">Număr de butoane</td>
-                            <td class="specification-value">{mouse.buttons_number}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td className="specification-name">Producător</td>
+                                <td className="specification-value">{mouse.manufacturer}</td>
+                            </tr>
+                            <tr>
+                                <td className="specification-name">Tip conexiune</td>
+                                <td className="specification-value">{mouse.connection_type}</td>
+                            </tr>
+                            <tr>
+                                <td className="specification-name">Rezoluție maximă</td>
+                                <td className="specification-value">{mouse.max_resolution}</td>
+                            </tr>
+                            <tr>
+                                <td className="specification-name">Tip senzor</td>
+                                <td className="specification-value">{mouse.sensor_type}</td>
+                            </tr>
+                            <tr>
+                                <td className="specification-name">Număr de butoane</td>
+                                <td className="specification-value">{mouse.buttons_number}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
-            <div class="device-prices">
+            <div className="device-prices">
 
             </div>
         </div>
