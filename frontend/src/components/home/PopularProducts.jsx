@@ -1,33 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { clearPopularDevices, getPopularDevices } from "../../redux/actions/actions";
 
-const PopularProducts = ({ devices }) => {
+const PopularProducts = ({ popularDevices, loading, getPopularDevices, clearPopularDevices }) => {
+    useEffect(() => {
+        getPopularDevices()
+
+        return () => clearPopularDevices
+    }, [])
+
     return (
-        <div className="section_popular-products">
-            <h2>
-                Produse populare
-            </h2>
-            <hr />
-            <div className="item-list">
-                {devices.sort(() => (Math.random() > 0.5) ? 1 : -1).slice(0, 5).map((el, i) => {
-                    return (
-                        <Link to={'/' + el.name} key={i} className="item">
-                            <img src={el.img} alt="" />
-                            <h4>De la {el.starting_price},00 lei</h4>
-                            <p>{el.name}</p>
-                        </Link>
-                    )
-                })}
-            </div>
-        </div>
+        <>
+            {loading ? <div className="section_popular-products"></div> :
+                <div className="section_popular-products">
+                    <h2>
+                        Produse populare
+                    </h2>
+                    <hr />
+                    <div className="item-list">
+                        {popularDevices.map((device, i) => {
+                            return (
+                                <Link
+                                    to={'/' + device.category.toLowerCase() + '/' + device.name.toLowerCase().replaceAll('-', '_').replaceAll(' ', '-')}
+                                    key={i}
+                                    className="item"
+                                >
+                                    <img src={device.img} alt="" />
+                                    <h4>De la {device.starting_price},00 lei</h4>
+                                    <p>{device.name}</p>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </div>
+            }
+        </>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        devices: state.devices.devices
+        popularDevices: state.popular.popular,
+        loading: state.loading.loading
     }
 }
 
-export default connect(mapStateToProps, null)(PopularProducts)
+const mapDispatchToProps = {
+    getPopularDevices,
+    clearPopularDevices
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PopularProducts)

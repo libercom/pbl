@@ -1,0 +1,43 @@
+.container {
+    .section_devices {
+        margin-top: 60px;
+
+        h2 {
+            color: $base-color;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: 0.5px solid $secondary-color;
+            border-radius: 7px;
+            background-color: $secondary-color;
+        }
+        
+        .devices-list {
+            display: flex;
+            margin-left: 80px;
+            flex-wrap: wrap;
+
+            .device {
+                padding: 0 20px;
+
+                img {
+                    width: 180px;
+                    height: 180px;
+                }
+
+                h4 {
+                    text-align: center;
+                    font-size: 15px;
+                }
+
+                p {
+                    margin-top: 3px;
+                    text-align: center;
+                    font-size: 13px;
+                    color: $secondary-color;
+                }
+            }
+        }
+    }
+}

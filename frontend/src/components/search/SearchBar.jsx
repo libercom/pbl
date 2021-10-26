@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { changeSearch, clearDetails, clearSuggestions } from "../../redux/actions/actions.js";
+import { changeSearch } from "../../redux/actions/actions.js";
 
-const SearchBar = ({ search, suggestions, changeSearch, clearSuggestions, clearDetails }) => {
+const SearchBar = ({ search, changeSearch }) => {
     const history = useHistory()
     const location = useLocation()
 
@@ -35,6 +35,7 @@ const SearchBar = ({ search, suggestions, changeSearch, clearSuggestions, clearD
 
     const redirectBackHandler = () => {
         history.goBack()
+
         clearInput()
     }
 

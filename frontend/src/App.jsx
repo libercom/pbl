@@ -1,34 +1,34 @@
 import React from "react";
-import { connect } from 'react-redux';
 import {
     BrowserRouter as Router,
-    Switch
+    Switch,
+    Route,
 } from "react-router-dom";
 import SearchBar from "./components/search/SearchBar.jsx";
-import HomePage from "./router/HomePage.jsx";
-import SuggestionsPage from "./router/SuggestionsPage.jsx";
-import DetailsPage from "./router/DetailsPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import SuggestionsPage from "./pages/SuggestionsPage.jsx";
 import './styles/main.scss'
+import CategoryPage from "./pages/CategoryPage.jsx";
 
-const App = ({ devices }) => {
+const App = () => {
     return (
         <Router>
             <div className="container">
                 <SearchBar />
                 <Switch>
-                    {SuggestionsPage()}
-                    {DetailsPage({ devices })}
-                    {HomePage()}
+                    <Route path='/search'>
+                        <SuggestionsPage />
+                    </Route>
+                    <Route path='/:category'>
+                        <CategoryPage />
+                    </Route>
+                    <Route path='/'>
+                        <HomePage />
+                    </Route>
                 </Switch>
             </div>
-        </Router>
+        </Router >
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        devices: state.devices.devices,
-    }
-}
-
-export default connect(mapStateToProps, null)(App)
+export default App

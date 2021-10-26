@@ -1,21 +1,26 @@
 import { call, all, spawn } from 'redux-saga/effects'
 import { loadDetailsSaga } from './loadDetailsSaga';
 import { loadDevicesSaga } from './loadDevicesSaga';
+import { loadPopularDevicesSaga } from './loadPopularDevicesSaga';
 import { loadSuggestionsSaga } from './loadSuggestionsSaga';
 
 export function* rootSaga() {
     const sagas = [
         loadDevicesSaga,
         loadSuggestionsSaga,
-        loadDetailsSaga
+        loadDetailsSaga,
+        loadPopularDevicesSaga
     ];
 
     yield all(sagas.map(saga =>
         spawn(function* () {
-            try {
-                yield call(saga)
-            } catch (e) {
-                console.log(e)
+            while (true) {
+                try {
+                    yield call(saga)
+                    break
+                } catch (e) {
+                    console.log(e)
+                }
             }
         })
     ))

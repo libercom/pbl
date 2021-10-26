@@ -5,12 +5,18 @@ export const getSearch = async (search) => {
     return result.data
 }
 
-export const getDevices = async () => {
-    const result = await axios.get('/api/products')
+export const getDevices = async (category) => {
+    const result = await axios.get(`/api/${category}`)
     return result.data
 }
 
 export const getDetails = async (device) => {
-    const result = await axios.get(`/api/products/${device}`)
+    const result = await axios.get(`/api/products/${device.replaceAll('-', ' ').replaceAll('_', '-')}`)
     return result.data
 }
+
+export const getPopularDevices = async () => {
+    const result = await axios.get('/api/products/popular')
+    return result.data
+}
+

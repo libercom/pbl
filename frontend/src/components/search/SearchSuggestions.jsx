@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import {
     changeSearch,
     getSuggestions,
-    clearSuggestions
+    clearSuggestions,
+    loadDetails
 } from "../../redux/actions/actions.js";
 
-const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, clearSuggestions }) => {
+const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, clearSuggestions, loadDetails }) => {
     const [timer, setTimer] = useState(null)
 
     useEffect(() => {
@@ -31,10 +32,8 @@ const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, 
 
         return () => {
             isSubscribed = false
-
             clearSuggestions()
         }
-
     }, [search])
 
     const clearInput = () => {
@@ -43,21 +42,27 @@ const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, 
         }
     }
 
+    const comparator = (a, b) => {
+        const res = a.name.toLowerCase().indexOf(search.toLowerCase()) - b.name.toLowerCase().indexOf(search.toLowerCase())
+
+        return res === 0 ? a.name.localeCompare(b.name) : res
+    }
+
     return (
         <div className="section_suggestions">
             <div className="suggestions">
-                {suggestions.map((el, i) => {
+                {suggestions.sort(comparator).map((suggestion, i) => {
                     return (
                         <Link
                             className="suggestion"
                             key={i}
-                            to={'/' + el.name}
+                            to={'/' + suggestion.category.toLowerCase() + '/' + suggestion.name.toLowerCase().replaceAll('-', '_').replaceAll(' ', '-')}
                             onClick={clearInput}
                         >
-                            <img src={el.img} alt="" className="suggestion-img" />
+                            <img src={suggestion.img} alt="" className="suggestion-img" />
                             <div className="suggestion-info">
-                                <span className="suggestion-name"><b>{el.name.substr(0, el.name.indexOf(' '))}</b> {el.name.substr(el.name.indexOf(' '))}</span>
-                                <span className="suggestion-price">De la <b>{el.starting_price}</b> lei</span>
+                                <span className="suggestion-name"><b>{suggestion.name.substr(0, suggestion.name.indexOf(' '))}</b> {suggestion.name.substr(suggestion.name.indexOf(' '))}</span>
+                                <span className="suggestion-price">De la <b>{suggestion.starting_price}</b> lei</span>
                             </div>
                         </Link>
                     )
@@ -77,7 +82,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     changeSearch,
     getSuggestions,
-    clearSuggestions
+    clearSuggestions,
+    loadDetails
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchSuggestions)
