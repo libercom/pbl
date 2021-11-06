@@ -91,26 +91,8 @@ export const resetLoading = () => {
     }
 }
 
-export const clearDevices = () => {
-    return {
-        type: CLEAR_DEVICES
-    }
-}
-
-export const clearPopularDevices = () => {
-    return {
-        type: CLEAR_POPULAR_DEVICES
-    }
-}
-
 export const clearSuggestions = () => {
     return {
         type: CLEAR_SUGGESTIONS
-    }
-}
-
-export const clearDetails = () => {
-    return {
-        type: CLEAR_DETAILS
     }
 }

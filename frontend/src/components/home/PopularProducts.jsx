@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearPopularDevices, getPopularDevices } from "../../redux/actions/actions";
+import { getPopularDevices } from "../../redux/actions/actions";
 
-const PopularProducts = ({ popularDevices, loading, getPopularDevices, clearPopularDevices }) => {
-    useEffect(() => {
+const PopularProducts = ({ popularDevices, loading, getPopularDevices }) => {
+    useLayoutEffect(() => {
         getPopularDevices()
-
-        return () => clearPopularDevices
     }, [])
 
     return (
@@ -48,7 +46,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     getPopularDevices,
-    clearPopularDevices
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PopularProducts)

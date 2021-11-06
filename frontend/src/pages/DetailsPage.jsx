@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import DeviceImages from "../components/details/DeviceImages";
@@ -7,20 +7,18 @@ import DeviceShops from "../components/details/DeviceShops";
 import LaptopSpecifications from "../components/details/LaptopSpecifications";
 import MonitorSpecifications from "../components/details/MonitorSpecifications";
 import MouseSpecifications from "../components/details/MouseSpecifications";
-import { clearDetails, getDetails } from "../redux/actions/actions";
+import { getDetails } from "../redux/actions/actions";
 
-const DetailsPage = ({ device, loading, getDetails, clearDetails }) => {
+const DetailsPage = ({ device, loading, getDetails }) => {
     const { name } = useParams()
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getDetails(name)
-
-        return () => clearDetails()
     }, [])
 
     return (
         <>
-            {(JSON.stringify(device) === JSON.stringify({})) ? <div className="section"></div> :
+            {loading ? <div className="section"></div> :
                 <div className="section">
                     <DeviceImages device={device} />
                     <div className="device-info">
@@ -45,8 +43,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    getDetails,
-    clearDetails
+    getDetails
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage)

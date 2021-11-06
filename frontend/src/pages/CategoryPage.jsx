@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import {
     Switch,
@@ -7,17 +7,15 @@ import {
     useParams
 } from "react-router-dom";
 import DeviceCategory from "../components/categories/DeviceCategory";
-import { clearDevices, getDevices } from "../redux/actions/actions";
+import { getDevices } from "../redux/actions/actions";
 import DetailsPage from "./DetailsPage";
 
-const CategoryPage = ({ getDevices, clearDevices }) => {
+const CategoryPage = ({ getDevices }) => {
     const { path } = useRouteMatch()
     const { category } = useParams()
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getDevices(category)
-
-        return () => clearDevices()
     }, [category])
 
     return (
@@ -35,8 +33,7 @@ const CategoryPage = ({ getDevices, clearDevices }) => {
 }
 
 const mapDispatchToProps = {
-    getDevices,
-    clearDevices
+    getDevices
 }
 
 export default connect(null, mapDispatchToProps)(CategoryPage)

@@ -5,10 +5,12 @@ import {
     changeSearch,
     getSuggestions,
     clearSuggestions,
-    loadDetails
+    loadDetails,
+    setLoading,
+    resetLoading
 } from "../../redux/actions/actions.js";
 
-const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, clearSuggestions, loadDetails }) => {
+const SearchSuggestions = ({ search, suggestions, loading, changeSearch, getSuggestions, clearSuggestions, setLoading, resetLoading }) => {
     const [timer, setTimer] = useState(null)
 
     useEffect(() => {
@@ -18,6 +20,10 @@ const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, 
             clearInterval(timer)
         }
 
+        if (search.length > 0 && !loading) {
+            setLoading()
+        }
+
         setTimer(
             setTimeout(() => {
                 if (search.length > 0) {
@@ -25,6 +31,8 @@ const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, 
                 } else {
                     if (suggestions.length > 0) {
                         clearSuggestions()
+
+                        resetLoading()
                     }
                 }
             }, 500)
@@ -32,6 +40,7 @@ const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, 
 
         return () => {
             isSubscribed = false
+
             clearSuggestions()
         }
     }, [search])
@@ -49,33 +58,38 @@ const SearchSuggestions = ({ search, suggestions, changeSearch, getSuggestions, 
     }
 
     return (
-        <div className="section_suggestions">
-            <div className="suggestions">
-                {suggestions.sort(comparator).map((suggestion, i) => {
-                    return (
-                        <Link
-                            className="suggestion"
-                            key={i}
-                            to={'/' + suggestion.category.toLowerCase() + '/' + suggestion.name.toLowerCase().replaceAll('-', '_').replaceAll(' ', '-')}
-                            onClick={clearInput}
-                        >
-                            <img src={suggestion.img} alt="" className="suggestion-img" />
-                            <div className="suggestion-info">
-                                <span className="suggestion-name"><b>{suggestion.name.substr(0, suggestion.name.indexOf(' '))}</b> {suggestion.name.substr(suggestion.name.indexOf(' '))}</span>
-                                <span className="suggestion-price">De la <b>{suggestion.starting_price}</b> lei</span>
-                            </div>
-                        </Link>
-                    )
-                })}
-            </div>
-        </div>
+        <>
+            {loading ? <div className="section_suggestions"></div> :
+                <div className="section_suggestions">
+                    <div className="suggestions">
+                        {suggestions.sort(comparator).map((suggestion, i) => {
+                            return (
+                                <Link
+                                    className="suggestion"
+                                    key={i}
+                                    to={'/' + suggestion.category.toLowerCase() + '/' + suggestion.name.toLowerCase().replaceAll('-', '_').replaceAll(' ', '-')}
+                                    onClick={clearInput}
+                                >
+                                    <img src={suggestion.img} alt="" className="suggestion-img" />
+                                    <div className="suggestion-info">
+                                        <span className="suggestion-name"><b>{suggestion.name.substr(0, suggestion.name.indexOf(' '))}</b> {suggestion.name.substr(suggestion.name.indexOf(' '))}</span>
+                                        <span className="suggestion-price">De la <b>{suggestion.starting_price}</b> lei</span>
+                                    </div>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </div>
+            }
+        </>
     )
 }
 
 const mapStateToProps = state => {
     return {
         search: state.search.search,
-        suggestions: state.search.suggestions
+        suggestions: state.search.suggestions,
+        loading: state.loading.loading
     }
 }
 
@@ -83,7 +97,9 @@ const mapDispatchToProps = {
     changeSearch,
     getSuggestions,
     clearSuggestions,
-    loadDetails
+    loadDetails,
+    setLoading,
+    resetLoading
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchSuggestions)

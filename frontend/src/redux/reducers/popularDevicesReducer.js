@@ -8,8 +8,6 @@ export const popularDevicesReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_POPULAR_DEVICES:
             return { popular: action.payload }
-        case CLEAR_POPULAR_DEVICES:
-            return { popular: [] }
         default:
             return state
     }
