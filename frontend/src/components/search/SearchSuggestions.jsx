@@ -1,55 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-    changeSearch,
-    getSuggestions,
-    clearSuggestions,
-    loadDetails,
-    setLoading,
-    resetLoading
-} from "../../redux/actions/actions.js";
 
-const SearchSuggestions = ({ search, suggestions, loading, changeSearch, getSuggestions, clearSuggestions, setLoading, resetLoading }) => {
+import { useGetSearchQuery } from "../../store/queries/products.js";
+import { changeSearch } from "../../store/reducers/searchSlice.js";
+
+const SearchSuggestions = () => {
+    const [skip, setSkip] = useState(false)
     const [timer, setTimer] = useState(null)
+    const [sortedSuggestions, setSortedSuggestions] = useState([])
+    const search = useSelector(state => state.search.value) || ''
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        let isSubscribed = true;
-
         if (timer) {
+            setSkip(true)
             clearInterval(timer)
-        }
-
-        if (search.length > 0 && !loading) {
-            setLoading()
         }
 
         setTimer(
             setTimeout(() => {
-                if (search.length > 0) {
-                    getSuggestions(search)
-                } else {
-                    if (suggestions.length > 0) {
-                        clearSuggestions()
-
-                        resetLoading()
-                    }
-                }
+                setSkip(false)
             }, 500)
         )
-
-        return () => {
-            isSubscribed = false
-
-            clearSuggestions()
-        }
     }, [search])
 
-    const clearInput = () => {
-        if (search) {
-            changeSearch('')
-        }
-    }
+    const { data: suggestions = [], error, isLoading: loading } = useGetSearchQuery(search, { skip })
+
+    useEffect(() => {
+        setSortedSuggestions([...suggestions].sort(comparator))
+    }, [suggestions])
 
     const comparator = (a, b) => {
         const res = a.name.toLowerCase().indexOf(search.toLowerCase()) - b.name.toLowerCase().indexOf(search.toLowerCase())
@@ -57,12 +37,18 @@ const SearchSuggestions = ({ search, suggestions, loading, changeSearch, getSugg
         return res === 0 ? a.name.localeCompare(b.name) : res
     }
 
+    const clearInput = () => {
+        if (search) {
+            dispatch(changeSearch(''))
+        }
+    }
+
     return (
         <>
             {loading ? <div className="section_suggestions"></div> :
                 <div className="section_suggestions">
                     <div className="suggestions">
-                        {suggestions.sort(comparator).map((suggestion, i) => {
+                        {sortedSuggestions && sortedSuggestions.map((suggestion, i) => {
                             return (
                                 <Link
                                     className="suggestion"
@@ -85,21 +71,4 @@ const SearchSuggestions = ({ search, suggestions, loading, changeSearch, getSugg
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        search: state.search.search,
-        suggestions: state.search.suggestions,
-        loading: state.loading.loading
-    }
-}
-
-const mapDispatchToProps = {
-    changeSearch,
-    getSuggestions,
-    clearSuggestions,
-    loadDetails,
-    setLoading,
-    resetLoading
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchSuggestions)
+export default SearchSuggestions

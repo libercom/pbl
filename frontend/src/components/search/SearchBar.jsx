@@ -1,20 +1,24 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { changeSearch } from "../../redux/actions/actions.js";
+import { changeSearch } from "../../store/reducers/searchSlice.js";
+import '../../styles/searchbar.scss'
 
-const SearchBar = ({ search, changeSearch }) => {
+
+const SearchBar = () => {
     const history = useHistory()
     const location = useLocation()
+    const search = useSelector((state) => state.search.value)
+    const dispatch = useDispatch()
 
     const inputChangeHandler = event => {
-        changeSearch(event.target.value)
+        dispatch(changeSearch(event.target.value))
     }
 
     const submitHandler = event => {
         if (search !== '') {
             history.push(`/search?=${search}`)
-            changeSearch('')
+            dispatch(changeSearch(''))
         }
 
         event.preventDefault()
@@ -22,7 +26,7 @@ const SearchBar = ({ search, changeSearch }) => {
 
     const clearInput = () => {
         if (search) {
-            changeSearch('')
+            dispatch(changeSearch(''))
         }
     }
 
@@ -53,7 +57,7 @@ const SearchBar = ({ search, changeSearch }) => {
                     <input
                         placeholder="Ce căutați?"
                         type="text"
-                        value={search}
+                        value={search || ""}
                         onClick={redirectSearchHandler}
                         onChange={inputChangeHandler}
                     />
@@ -76,14 +80,14 @@ const SearchBar = ({ search, changeSearch }) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        search: state.search.search
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         search: state.search.search
+//     }
+// }
 
-const mapDispatchToProps = {
-    changeSearch
-}
+// const mapDispatchToProps = {
+//     changeSearch
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+export default SearchBar

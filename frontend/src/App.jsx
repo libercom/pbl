@@ -7,8 +7,8 @@ import {
 import SearchBar from "./components/search/SearchBar.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import SuggestionsPage from "./pages/SuggestionsPage.jsx";
-import './styles/main.scss'
 import CategoryPage from "./pages/CategoryPage.jsx";
+import './styles/main.scss'
 
 const App = () => {
     return (

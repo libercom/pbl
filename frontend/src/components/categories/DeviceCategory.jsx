@@ -1,9 +1,11 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { useGetDevicesQuery } from "../../store/queries/products";
 import NavBar from "../home/NavBar";
 
-const DeviceCategory = ({ category, devices, loading }) => {
+const DeviceCategory = ({ category }) => {
+    const { data: devices, error, isLoading: loading } = useGetDevicesQuery(category)
+
     return (
         <>
             <NavBar />
@@ -38,11 +40,4 @@ const DeviceCategory = ({ category, devices, loading }) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        devices: state.devices.devices,
-        loading: state.loading.loading
-    }
-}
-
-export default connect(mapStateToProps, null)(DeviceCategory)
+export default DeviceCategory

@@ -1,5 +1,4 @@
-import React, { useLayoutEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { useParams } from "react-router-dom";
 import DeviceImages from "../components/details/DeviceImages";
 import DeviceInfo from "../components/details/DeviceInfo";
@@ -7,14 +6,13 @@ import DeviceShops from "../components/details/DeviceShops";
 import LaptopSpecifications from "../components/details/LaptopSpecifications";
 import MonitorSpecifications from "../components/details/MonitorSpecifications";
 import MouseSpecifications from "../components/details/MouseSpecifications";
-import { getDetails } from "../redux/actions/actions";
+import { useGetDetailsQuery } from "../store/queries/products";
+import '../styles/details.scss'
 
-const DetailsPage = ({ device, loading, getDetails }) => {
+const DetailsPage = () => {
     const { name } = useParams()
 
-    useLayoutEffect(() => {
-        getDetails(name)
-    }, [])
+    const { data: device, error, isLoading: loading } = useGetDetailsQuery(name)
 
     return (
         <>
@@ -35,15 +33,4 @@ const DetailsPage = ({ device, loading, getDetails }) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        device: state.details.details,
-        loading: state.loading.loading
-    }
-}
-
-const mapDispatchToProps = {
-    getDetails
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DetailsPage)
+export default DetailsPage

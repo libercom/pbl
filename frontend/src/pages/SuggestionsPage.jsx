@@ -1,5 +1,6 @@
 import React from "react";
 import SearchSuggestions from "../components/search/SearchSuggestions";
+import '../styles/suggestions.scss'
 
 const SuggestionsPage = () => {
     return (
