@@ -1,33 +1,33 @@
 from django.db.models import fields
 from rest_framework import serializers
-from categories.models import Laptop, Monitor, Mouse, Product, Darwin, Enter
+from categories import models
 
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Product
+        model = models.Product
         fields = '__all__'
 
 
 class LaptopSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Laptop
+        model = models.Laptop
         exclude = ['product']
 
 
 class MouseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Mouse
+        model = models.Mouse
         exclude = ['product']
 
 
 class MonitorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Monitor
+        model = models.Monitor
         exclude = ['product']
 
 
-class DarwinSerializer(serializers.ModelSerializer):
+class ShopsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Darwin
+        model = models.Shops
         exclude = ['product']

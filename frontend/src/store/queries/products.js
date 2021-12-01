@@ -14,12 +14,7 @@ export const productsApi = createApi({
             query: category => `${category}`
         }),
         getSearch: builder.query({
-            query: search => {
-                if (search === '') {
-                    return `/products/search/blabla`
-                }
-                return `/products/search/${search}`
-            },
+            query: search => `/products/search/${search}`
         })
     })
 })

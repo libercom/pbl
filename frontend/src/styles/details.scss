@@ -53,12 +53,13 @@
         }
         
         .device-info {
-            width: 40%;
+            // width: 40%;
+            width: 35%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             // margin-top: 55px;
-            margin-left: 10px;
+            // margin-left: 10px;
 
             .device-general-info {
                 h1 {
@@ -115,7 +116,7 @@
         }
         
         .device-prices {
-            width: 30%;
+            width: 35%;
             display: flex;
             flex-direction: column;
 

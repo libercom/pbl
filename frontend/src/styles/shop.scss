@@ -1,0 +1,33 @@
+.shop {
+    display: flex;
+    margin-bottom: 52px;
+    margin-left: 20px;
+}
+
+.shop-ginfo {
+    margin-left: 20px;
+
+    .shop-price {
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .shop-available {
+        color: rgb(18, 206, 27);
+        font-size: 14px;
+    }
+}
+
+.shop-link {
+    background-color: rgb(34, 92, 252);
+    padding: 5px 10px;
+    border-radius: 14px;
+    height: 16px;
+    font-size: 14px;
+    margin-left: auto;
+    margin-top: 3px;
+
+    a {
+        color: #fff;
+    }
+}

@@ -5,7 +5,7 @@ from django.db.models.fields.files import ImageField
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
     brand = models.CharField(max_length=50)
     category = models.CharField(max_length=50)
     starting_price = models.IntegerField()
@@ -49,23 +49,16 @@ class Monitor(models.Model):
     curved_screen = models.CharField(max_length=3)
 
 
-class Darwin(models.Model):
+class Shops(models.Model):
     product = models.OneToOneField(
-        Product, on_delete=CASCADE, primary_key=True)
-    price = models.IntegerField()
-    link = models.CharField(max_length=150)
-    is_available = models.BooleanField()
-
-    def __str__(self):
-        return self.product.name
-
-
-class Enter(models.Model):
-    product = models.OneToOneField(
-        Product, on_delete=CASCADE, primary_key=True)
-    price = models.IntegerField()
-    link = models.CharField(max_length=150)
-    is_available = models.BooleanField()
+        Product, on_delete=CASCADE, primary_key=True
+    )
+    darwin_price = models.IntegerField()
+    darwin_link = models.CharField(max_length=150)
+    darwin_is_available = models.BooleanField()
+    enter_price = models.IntegerField()
+    enter_link = models.CharField(max_length=150)
+    enter_is_available = models.BooleanField()
 
     def __str__(self):
         return self.product.name

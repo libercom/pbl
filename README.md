@@ -3,7 +3,7 @@
 
 ## Backend development workflow - Windows
 
-```json
+```bash
 python -m venv venv
 venv\Scripts\Activate
 pip install -r requirements.txt
@@ -12,16 +12,16 @@ python manage.py runserver
 
 ## Backend development workflow - Mac/Linux
 
-```json
+```bash
 virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
-python manage.py runserver
+python3 manage.py runserver
 ```
 
 ## Frontend development workflow
 
-```json
+```bash
 npm i
 npm run dev
 ```

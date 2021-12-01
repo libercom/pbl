@@ -26,7 +26,7 @@ const DetailsPage = () => {
                                 <MouseSpecifications device={device} />
                         }
                     </div>
-                    <DeviceShops />
+                    <DeviceShops device={device} />
                 </div>
             }
         </>
