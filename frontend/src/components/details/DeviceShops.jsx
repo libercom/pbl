@@ -14,7 +14,7 @@ const DeviceShops = ({ device }) => {
                     </div>
                     {device.darwin_is_available ?
                         <div className="shop-available">
-                            In stoc
+                            În stoc
                         </div> :
                         <div className="shop-available">
                             Stoc epuizat
@@ -22,7 +22,7 @@ const DeviceShops = ({ device }) => {
                     }
                 </div>
                 <div className="shop-link">
-                    <a className="shop-link-button" href={device.darwin_link}>spre magazin &gt;</a>
+                    <a className="shop-link-button" href={device.darwin_link} target='_blank'>spre magazin &gt;</a>
                 </div>
             </div>
             <div className="shop">
@@ -35,7 +35,7 @@ const DeviceShops = ({ device }) => {
                     </div>
                     {device.enter_is_available ?
                         <div className="shop-available">
-                            In stoc
+                            În stoc
                         </div> :
                         <div className="shop-available">
                             Stoc epuizat
@@ -43,7 +43,7 @@ const DeviceShops = ({ device }) => {
                     }
                 </div>
                 <div className="shop-link">
-                    <a className="shop-link-button" href={device.enter_link}>spre magazin &gt;</a>
+                    <a className="shop-link-button" href={device.enter_link} target='_blank'>spre magazin &gt;</a>
                 </div>
             </div>
             <div className="shop">
@@ -56,7 +56,7 @@ const DeviceShops = ({ device }) => {
                     </div>
                     {device.enter_is_available ?
                         <div className="shop-available">
-                            In stoc
+                            În stoc
                         </div> :
                         <div className="shop-available">
                             Stoc epuizat
@@ -64,7 +64,7 @@ const DeviceShops = ({ device }) => {
                     }
                 </div>
                 <div className="shop-link">
-                    <a className="shop-link-button" href={device.enter_link}>spre magazin &gt;</a>
+                    <a className="shop-link-button" href={device.enter_link} target='_blank'>spre magazin &gt;</a>
                 </div>
             </div>
             <div className="shop">
@@ -77,7 +77,7 @@ const DeviceShops = ({ device }) => {
                     </div>
                     {device.enter_is_available ?
                         <div className="shop-available">
-                            In stoc
+                            În stoc
                         </div> :
                         <div className="shop-available">
                             Stoc epuizat
@@ -85,7 +85,7 @@ const DeviceShops = ({ device }) => {
                     }
                 </div>
                 <div className="shop-link">
-                    <a className="shop-link-button" href={device.enter_link}>spre magazin &gt;</a>
+                    <a className="shop-link-button" href={device.enter_link} target='_blank'>spre magazin &gt;</a>
                 </div>
             </div>
             <div className="shop">
@@ -98,7 +98,7 @@ const DeviceShops = ({ device }) => {
                     </div>
                     {device.enter_is_available ?
                         <div className="shop-available">
-                            In stoc
+                            În stoc
                         </div> :
                         <div className="shop-available">
                             Stoc epuizat
@@ -106,7 +106,7 @@ const DeviceShops = ({ device }) => {
                     }
                 </div>
                 <div className="shop-link">
-                    <a className="shop-link-button" href={device.enter_link}>spre magazin &gt;</a>
+                    <a className="shop-link-button" href={device.enter_link} target='_blank'>spre magazin &gt;</a>
                 </div>
             </div>
         </div>

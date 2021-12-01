@@ -97,3 +97,40 @@
         }
     }
 }
+
+.account-menu {
+    position: absolute;
+    right: 200px;
+    top: 30px;
+    
+    &:hover .account-icon {
+        color: rgb(53, 107, 255);
+        cursor: pointer;
+    }
+
+    &:hover .account-dropdown {
+        display: block;
+    }
+}
+
+.account-dropdown {
+    display: none;
+    position: absolute;
+    right: -40px;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+    a {
+        color: black;
+        padding: 12px 16px;
+        text-align: center;
+        font-size: 14px;
+        display: block;
+
+        &:hover {
+            background-color: #f1f1f1
+        }
+    }
+}

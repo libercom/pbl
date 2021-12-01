@@ -18,34 +18,34 @@ const LaptopSpecifications = ({ device }) => {
                         <td className="specification-name">Număr de nuclee</td>
                         <td className="specification-value">{device.processor_cores_number}</td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                         <td className="specification-name">Frecvența procesorului</td>
                         <td className="specification-value">{device.processor_frequence} GHz</td>
-                    </tr>
+                    </tr> */}
                     <tr>
                         <td className="specification-name">RAM</td>
-                        <td className="specification-value">{device.ram_amount}</td>
+                        <td className="specification-value">{device.ram_amount} GB</td>
                     </tr>
                     <tr>
                         <td className="specification-name">Capacitate memorie</td>
                         <td className="specification-value">{device.storage_capacity}</td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                         <td className="specification-name">Sistem de operare</td>
                         <td className="specification-value">{device.operating_system}</td>
-                    </tr>
-                    <tr>
+                    </tr> */}
+                    {/* <tr>
                         <td className="specification-name">Tip procesor video</td>
                         <td className="specification-value">{device.graphics_card_type}</td>
-                    </tr>
+                    </tr> */}
                     <tr>
                         <td className="specification-name">Model procesor video</td>
                         <td className="specification-value">{device.graphics_card_model}</td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                         <td className="specification-name">Rezoluție ecran</td>
                         <td className="specification-value">{device.display_resolution}</td>
-                    </tr>
+                    </tr> */}
                     <tr>
                         <td className="specification-name">Dimensiune ecran</td>
                         <td className="specification-value">{device.display_diagonal_size}''</td>

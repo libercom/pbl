@@ -9,6 +9,9 @@ import HomePage from "./pages/HomePage.jsx";
 import SuggestionsPage from "./pages/SuggestionsPage.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 import './styles/main.scss'
+import WishlistPage from "./pages/WishlistPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import SignupPage from "./pages/SignupPage.jsx";
 
 const App = () => {
     return (
@@ -18,6 +21,15 @@ const App = () => {
                 <Switch>
                     <Route path='/search'>
                         <SuggestionsPage />
+                    </Route>
+                    <Route path='/login'>
+                        <LoginPage />
+                    </Route>
+                    <Route path='/signup'>
+                        <SignupPage />
+                    </Route>
+                    <Route path='/wishlist'>
+                        <WishlistPage />
                     </Route>
                     <Route path='/:category'>
                         <CategoryPage />

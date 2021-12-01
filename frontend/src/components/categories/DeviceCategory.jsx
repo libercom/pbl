@@ -2,9 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGetDevicesQuery } from "../../store/queries/products";
 import NavBar from "../home/NavBar";
+import PageNotFound from "../others/PageNotFound";
 
 const DeviceCategory = ({ category }) => {
     const { data: devices, error, isLoading: loading } = useGetDevicesQuery(category)
+
+    if (error) {
+        return <PageNotFound />
+    }
 
     return (
         <>

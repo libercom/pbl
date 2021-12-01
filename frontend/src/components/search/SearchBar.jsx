@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import { toggleAuthStatus } from "../../store/reducers/authSlice.js";
 import { changeSearch } from "../../store/reducers/searchSlice.js";
 import '../../styles/searchbar.scss'
 
@@ -10,6 +12,7 @@ const SearchBar = () => {
     const history = useHistory()
     const location = useLocation()
     const search = useSelector((state) => state.search.search)
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
     const dispatch = useDispatch()
 
 
@@ -73,6 +76,12 @@ const SearchBar = () => {
 
     }
 
+    // handler for logging out
+
+    const logOutHandler = () => {
+        dispatch(toggleAuthStatus())
+    }
+
     return (
         <div className="header">
             <div className="logo" onClick={redirectHomeHandler}>
@@ -104,6 +113,24 @@ const SearchBar = () => {
                     </div>
                 </button>
             </form>
+            <div className="account-menu">
+                <span className="material-icons account-icon">
+                    account_circle
+                </span>
+                <div className="account-dropdown">
+                    {isAuthenticated ? (
+                        <>
+                            <Link to="/" onClick={logOutHandler}>Log out</Link>
+                            <Link to="/wishlist">Wishlist</Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login">Log in</Link>
+                            <Link to="/signup">Sign up</Link>
+                        </>
+                    )}
+                </div>
+            </div>
         </div>
     )
 }
