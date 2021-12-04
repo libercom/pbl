@@ -13,6 +13,16 @@ const WishlistPage = () => {
         history.push('/')
     }
 
+    if (wishList.length === 0) {
+        return (
+            <div className="wishlist-empty">
+                <span>
+                    No items in your wishlist
+                </span>
+            </div>
+        )
+    }
+
     return (
         <div className="wishlist-section">
             <div className="wishlist-items">
